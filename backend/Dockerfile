@@ -1,12 +1,10 @@
-# 1. 베이스 이미지 설정
-FROM gradle:9.2-jdk17
+FROM gradle:8.5-jdk17-alpine AS builder
+WORKDIR /build
+COPY . .
+RUN gradle bootJar --no-daemon
 
-# 2. 작업 디렉토리 설정
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-
-COPY . /app
-
+COPY --from=builder /build/build/libs/*.jar app.jar
 EXPOSE 8080
-
-# 5. 컨테이너 시작 시 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "app.jar"]
