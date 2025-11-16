@@ -1,10 +1,10 @@
-version: '3'
+version: '3.8'
 
 services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:80"
+      - "3000:3000"
     depends_on:
       - backend
 
@@ -13,18 +13,21 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
-    
-  db:
-    image: postgres:13
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: topcit-mysql
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: topcit
+      MYSQL_USER: topcit_user
+      MYSQL_PASSWORD: topcit1234
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  db_data:
+  mysql_data:

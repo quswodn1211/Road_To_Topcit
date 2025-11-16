@@ -1,6 +1,5 @@
 name: Docker Compose
 
-
 on:
   push:
     branches: [ main ]
@@ -9,11 +8,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     if: contains(github.event.head_commit.message, 'backend')
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Run Docker Compose
-        run: docker compose up -d backend, db
+      - name: Set up Docker Compose
+        run: |
+          docker compose version
+
+      - name: Start backend & mysql with Docker Compose
+        run: |
+          docker compose up -d backend mysql
+
+      - name: Check running containers
+        run: docker ps -a
