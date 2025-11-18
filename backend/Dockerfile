@@ -1,6 +1,10 @@
 FROM gradle:8.5-jdk17 AS builder
 WORKDIR /build
-COPY . .
+
+# backend 전체만 복사
+COPY build.gradle settings.gradle ./
+COPY src ./src
+
 RUN gradle bootJar --no-daemon
 
 FROM eclipse-temurin:17-jdk
