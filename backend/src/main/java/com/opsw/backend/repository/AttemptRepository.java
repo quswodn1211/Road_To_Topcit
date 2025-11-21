@@ -2,6 +2,8 @@ package com.opsw.backend.repository;
 
 import com.opsw.backend.domain.user.Attempt;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,4 +17,15 @@ public interface AttemptRepository extends JpaRepository<Attempt, Long> {
 
     // 약점 자동 분석
     List<Attempt> findByUserId(Long userId);
+
+    @Query(value = """
+    SELECT q.subject_id AS subjectId, SUM(a.gained_xp) AS totalXp
+    FROM attempt a
+    LEFT JOIN question q ON a.question_id = q.id
+    WHERE a.user_id = :userId
+    GROUP BY q.subject_id
+    """, nativeQuery = true)
+    List<Object[]> getXpBySubject(@Param("userId") Long userId);
+
+
 }

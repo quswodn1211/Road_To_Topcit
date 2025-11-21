@@ -1,21 +1,19 @@
 package com.opsw.backend.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/** 과목 테이블 */
 @Entity
 @Getter
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "subject")
 public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 과목 고유 ID
+    private Long id;
 
-    @Column(length = 50, nullable = false, unique = true)
-    private String name; // 과목명
+    @Column(nullable = false, unique = true, length = 50)
+    private String name;
 }
