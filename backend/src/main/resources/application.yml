@@ -16,9 +16,15 @@ spring:
     name: learn-tc
 
   datasource:
+<<<<<<< HEAD
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
+=======
+    url: jdbc:mysql://topcit-db.cjg2aaai646f.ap-northeast-2.rds.amazonaws.com:3306/topcit?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: topcit_user
+    password: topcit1234
+>>>>>>> feat/aiset
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -28,7 +34,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
 
 springdoc:
   api-docs:
@@ -47,3 +53,11 @@ app:
     question-types: [MCQ, SHORT]
     difficulty-levels: [Easy, Normal, Hard, Expert]
     topcit-categories: [소프트웨어공학, 데이터베이스, 네트워크, 보안, 인공지능, 비즈니스]
+
+ai:
+  enabled: false      # false = 로컬 개발(더미), true = AI 서버 사용
+  url: http://localhost:5007 # 나중에 AI팀이 실제 운영 서버(URL)로 변경
+
+
+
+
