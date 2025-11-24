@@ -24,8 +24,8 @@ public interface UserSubjectProgressApi {
     ResponseEntity<UserSubjectProgressResponse> resetExperience(UserSubjectProgressResetRequest request);
 
     @Operation(summary = "경험치 조회", description = "사용자와 과목 ID로 단일 진행도를 조회한다.")
-    ResponseEntity<UserSubjectProgressResponse> getProgress(UserSubjectProgressQuery request);
+    ResponseEntity<UserSubjectProgressResponse> getProgress(Long userId, Long subjectId);
 
     @Operation(summary = "사용자별 경험치 목록", description = "사용자의 모든 과목 경험치를 조회한다.")
-    ResponseEntity<UserSubjectProgressListResponse> listProgresses(UserSubjectProgressListQuery request);
+    ResponseEntity<UserSubjectProgressListResponse> listProgresses(Long userId);
 }

@@ -28,8 +28,8 @@ public interface UserStoryProgressApi {
     ResponseEntity<UserStoryProgressResponse> refillLife(UserStoryProgressRefillRequest request);
 
     @Operation(summary = "진행 조회", description = "사용자와 월드 조합으로 진행 상태를 조회한다.")
-    ResponseEntity<UserStoryProgressResponse> getProgress(UserStoryProgressQuery request);
+    ResponseEntity<UserStoryProgressResponse> getProgress(Long userId, Long worldId);
 
     @Operation(summary = "사용자별 진행 목록", description = "사용자가 진행 중인 모든 월드의 상태를 조회한다.")
-    ResponseEntity<UserStoryProgressListResponse> listProgresses(UserStoryProgressListQuery request);
+    ResponseEntity<UserStoryProgressListResponse> listProgresses(Long userId);
 }
