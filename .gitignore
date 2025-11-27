@@ -1,0 +1,59 @@
+# IDEs
+.idea/
+.vscode/
+*.iws
+*.iml
+*.ipr
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Backend (Spring Boot + Gradle)
+backend/.gradle
+backend/build/
+backend/out/
+backend/*.log
+backend/application-local.yml
+backend/application-local.properties
+
+# Frontend (Node.js)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/.nuxt/
+frontend/coverage/
+frontend/*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Security - don't commit sensitive files
+*.pem
+*.key
+secrets/
+
+# Database
+*.db
+*.sqlite
+
+# Test coverage
+coverage/
+*.lcov
