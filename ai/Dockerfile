@@ -31,4 +31,3 @@ COPY . /workspace
 EXPOSE 8888
 
 CMD ["bash", "-c", "jupyter lab --ip=0.0.0.0 --no-browser --allow-root --ServerApp.password=$JUPYTER_PASSWORD"]
->>>>>>> 4916b0a (workflow added)
