@@ -1,10 +1,12 @@
 package com.opsw.backend.domain;
 
+import com.opsw.backend.config.JsonToMapConverter;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
 
-/** 주간 학습 계획 테이블 */
+import java.time.LocalDate;
+import java.util.Map;
+
 @Entity
 @Getter
 @Builder
@@ -16,14 +18,20 @@ public class WeeklyPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 주간 계획 ID
+    private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Long userId; // 사용자 ID
+    private Long userId;
 
     @Column(name = "week_start", nullable = false)
-    private LocalDate weekStart; // 주 시작일
+    private LocalDate weekStart;
 
+    @Convert(converter = JsonToMapConverter.class)
     @Column(name = "plan", columnDefinition = "json", nullable = false)
-    private String plan; // 요일별 계획 JSON
+    private Map<String, Object> plan;
+
+    public void updatePlan(Map<String, Object> plan) {
+        this.plan = plan;
+    }
+
 }
