@@ -3,8 +3,9 @@ import ssl
 import websockets
 
 async def send_to_runpod():
-    URL = "wss://a2u2mglnolktsn-8000.proxy.runpod.net/ws"
-    API_TOKEN = "mysecret123"  
+
+    URL = os.getenv("URL")
+    API_TOKEN = os.getenv("API_TOKEN")
     # TLS 설정
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     ssl_context.check_hostname = False
@@ -14,9 +15,9 @@ async def send_to_runpod():
 
     async with websockets.connect(
         URL,
-        ssl=ssl_context,             # 🔥 TLS 적용
+        ssl=ssl_context,            
         additional_headers=headers,
-        origin="*"                   # 필요할 경우만 사용
+        origin="*"                  
     ) as ws:
         print("Connected!")
 
