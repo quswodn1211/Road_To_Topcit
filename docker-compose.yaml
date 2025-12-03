@@ -24,6 +24,8 @@ services:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    networks:
+      - app-net
   
   ai-router:
     build:
@@ -40,3 +42,5 @@ services:
 volumes:
   backend-logs:
 
+networks:
+  - app-net
