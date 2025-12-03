@@ -1,16 +1,27 @@
 import asyncio
+import ssl
 import websockets
 
-URL = "wss://a2u2mglnolktsnolktsn.proxy.runpod.net/ws"
-API_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhc3NzYSIsIm5hbWUiOiJqYWV3b28iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTE2MjM5MDIyfQ.Zm8kUhVG6a47XHN7YX1RQDTGA4dV4a7zuqOK48eCzEY"  
+URL = "wss://a2u2mglnolktsn-8000.proxy.runpod.net/ws"
+API_TOKEN = "mysecret123"  
 
 
 async def main():
+    # TLS 설정
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+
+    headers = {"Authorization": f"Bearer {API_TOKEN}"}
+
     async with websockets.connect(
         URL,
-        additional_headers={"Authorization": f"Bearer {API_TOKEN}"}
+        ssl=ssl_context,             # 🔥 TLS 적용
+        additional_headers=headers,
+        origin="*"                   # 필요할 경우만 사용
     ) as ws:
-        print("connect")
+        print("Connected!")
+
         await ws.send("소프트웨어 공학에 대해 알려줘")
         reply = await ws.recv()
         print("Reply:", reply)
