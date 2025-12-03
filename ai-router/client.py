@@ -2,11 +2,9 @@ import asyncio
 import ssl
 import websockets
 
-URL = "wss://a2u2mglnolktsn-8000.proxy.runpod.net/ws"
-API_TOKEN = "mysecret123"  
-
-
-async def main():
+async def send_to_runpod():
+    URL = "wss://a2u2mglnolktsn-8000.proxy.runpod.net/ws"
+    API_TOKEN = "mysecret123"  
     # TLS 설정
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     ssl_context.check_hostname = False
@@ -24,6 +22,7 @@ async def main():
 
         await ws.send("소프트웨어 공학에 대해 알려줘")
         reply = await ws.recv()
-        print("Reply:", reply)
+        return reply
 
-asyncio.run(main())
+def call_runpod():
+    asyncio.run(main())

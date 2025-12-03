@@ -25,11 +25,11 @@ services:
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
   
-  ai-service:
+  ai-router:
     build:
-      context: ./ai
+      context: ./ai-router
       dockerfile: Dockerfile
-    container_name: ai-service
+    container_name: ai-router
     ports:
       - "8000:8000"
     environment:
@@ -39,5 +39,4 @@ services:
 
 volumes:
   backend-logs:
-  ai-logs:
 
