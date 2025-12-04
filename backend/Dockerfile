@@ -7,10 +7,8 @@ COPY settings.gradle .
 COPY build.gradle .
 COPY src src
 
-ENV GRADLE_USER_HOME=/cache
-
 RUN chmod +x gradlew
-RUN ./gradlew --no-daemon bootJar 
+RUN ./gradlew bootJar --no-daemon 
 
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
