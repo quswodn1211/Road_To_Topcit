@@ -38,9 +38,14 @@ services:
       # GPU 서버 주소 (RunPod endpoint)
       URL: ${URL}
       PI_TOKEN: ${API_TOKEN}
+    networks:
+      - app-net
+    depends_on:
+      - backend
+
 
 volumes:
   backend-logs:
 
 networks:
-  - app-net
+  app-net: {}
